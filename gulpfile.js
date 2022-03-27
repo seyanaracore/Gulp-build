@@ -3,7 +3,6 @@
  */
 const gulp = require("gulp");
 const argv = require("yargs").argv;
-const browserSync = require("browser-sync").create();
 const gulpif = require("gulp-if");
 const rename = require("gulp-rename");
 const webpackStream = require("webpack-stream");
@@ -84,8 +83,7 @@ function script() {
       .pipe(gulpif(isProd(), gulp.dest(path.dist.script)))
       .pipe(gulpif(isProd(), uglify()))
       .pipe(rename({ suffix: ".min" }))
-      .pipe(gulp.dest(path.dist.script))
-      .pipe(browserSync.reload({ stream: true }));
+      .pipe(gulp.dest(path.dist.script));
 }
 
 /**
